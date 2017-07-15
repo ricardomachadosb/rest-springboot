@@ -14,7 +14,7 @@ import br.com.rest.facades.CategoryFacade;
 public class CategoryController {
 	
 	@Autowired
-	CategoryFacade categoryFacade;
+	private CategoryFacade categoryFacade;
 	
 	@RequestMapping(path="/categories", method=RequestMethod.POST)
 	public CategoryDTO createCategory(@RequestParam(value="code", required=true) String code,

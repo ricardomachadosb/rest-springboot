@@ -13,10 +13,10 @@ import br.com.rest.services.CategoryService;
 public class DefaultCategoryFacadeImpl implements CategoryFacade{
 	
 	@Autowired
-	CategoryService categoryService;
+	private CategoryService categoryService;
 	
 	@Autowired
-	CategoryConverter categoryConverter;
+	private CategoryConverter categoryConverter;
 
 	@Override
 	public CategoryDTO createCategory(String code, String tittle, String superCategoryCode) {

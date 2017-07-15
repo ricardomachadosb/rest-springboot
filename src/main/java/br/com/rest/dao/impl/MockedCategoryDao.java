@@ -2,7 +2,6 @@ package br.com.rest.dao.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.spi.CurrencyNameProvider;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import br.com.rest.models.CategoryModel;
 @Repository
 public class MockedCategoryDao implements CategoryDao{
 	
-	Map<String, CategoryModel> dataBase = new HashMap<String, CategoryModel>();
+	private Map<String, CategoryModel> dataBase = new HashMap<String, CategoryModel>();
 
 	@Override
 	public CategoryModel createCategory(String code, String tittle, String superCategoryCode) throws RestDataBaseRunTimeException{
@@ -35,12 +34,8 @@ public class MockedCategoryDao implements CategoryDao{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.rest.dao.CategoryDao#getCategoryByCode(java.lang.String)
-	 */
 	@Override
 	public CategoryModel getCategoryByCode(String code) {
 		return dataBase.get(code);
 	}
-
 }
