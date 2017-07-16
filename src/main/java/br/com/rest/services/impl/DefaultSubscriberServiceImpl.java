@@ -23,6 +23,11 @@ public class DefaultSubscriberServiceImpl implements SubscriberService{
 		return subscriberDao.createSubscriber(email, categoriesCodes);
 	}
 	
+	@Override
+	public List<SubscriberModel> getAllSubscribers() {
+		return subscriberDao.getAllSubscribers();
+	}
+	
 	/**
 	 * @param code
 	 * @param tittle
@@ -46,5 +51,4 @@ public class DefaultSubscriberServiceImpl implements SubscriberService{
 			throw new RestBusinessRunTimeException(errorsMessages.toString());
 		}
 	}
-
 }

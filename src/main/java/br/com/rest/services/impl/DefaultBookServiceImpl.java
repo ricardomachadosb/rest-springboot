@@ -1,5 +1,7 @@
 package br.com.rest.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.rest.dao.BookDao;
 import br.com.rest.exceptions.RestBusinessRunTimeException;
 import br.com.rest.models.BookModel;
+import br.com.rest.models.CategoryModel;
 import br.com.rest.services.BookService;
 
 @Service
@@ -45,6 +48,12 @@ public class DefaultBookServiceImpl implements BookService{
 		if(hasErrors){
 			throw new RestBusinessRunTimeException(errorsMessages.toString());
 		}
+	}
+
+	@Override
+	public List<BookModel> getAllBooks() {
+		return  bookDao.getAllBooks();
+		
 	}
 
 }

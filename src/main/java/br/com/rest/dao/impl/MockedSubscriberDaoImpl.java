@@ -40,8 +40,13 @@ public class MockedSubscriberDaoImpl implements SubscriberDao{
 
 	@Override
 	public SubscriberModel getSubscriberByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataBase.get(email);
+	}
+
+
+	@Override
+	public List<SubscriberModel> getAllSubscribers() {
+		return new ArrayList<SubscriberModel>(dataBase.values());
 	}
 
 }

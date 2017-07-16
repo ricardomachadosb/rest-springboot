@@ -1,6 +1,8 @@
 package br.com.rest.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,5 +41,10 @@ public class MockedBookDao implements BookDao{
 		if(dataBase.get(tittle) != null){
 			throw new RestDataBaseRunTimeException("Book tittle: \"" + tittle + "\" already in use"); 
 		}
+	}
+
+	@Override
+	public List<BookModel> getAllBooks() {
+		return new ArrayList<BookModel>(dataBase.values());
 	}
 }
