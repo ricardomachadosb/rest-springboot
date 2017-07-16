@@ -7,22 +7,22 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class BookRequestBody {
+public class SubscriberRequestBody {
 	
 	@NotBlank
 	@NotNull
-	private String tittle;
+	private String email;
 	
 	@NotNull
 	@NotEmpty
 	private Set<String> categoryCodes;
 
-	public String getTittle() {
-		return tittle;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Set<String> getCategoryCodes() {
@@ -32,5 +32,4 @@ public class BookRequestBody {
 	public void setCategoryCodes(Set<String> categoryCodes) {
 		this.categoryCodes = categoryCodes;
 	}
-
 }

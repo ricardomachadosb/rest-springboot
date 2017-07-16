@@ -1,6 +1,6 @@
 package br.com.rest.facades.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class DefaultBookFacadeImpl implements BookFacade{
 	private BookConverter bookConverter;
 
 	@Override
-	public BookDTO createBook(String tittle, List<String> categoriesCodes) {
+	public BookDTO createBook(String tittle, Set<String> categoriesCodes) {
 		BookModel bookModel = bookService.createBook(tittle, categoriesCodes);
 		BookDTO bookDto = bookConverter.convert(bookModel);
 		return bookDto;

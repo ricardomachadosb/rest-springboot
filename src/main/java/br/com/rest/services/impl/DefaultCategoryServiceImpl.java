@@ -2,6 +2,7 @@ package br.com.rest.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,28 @@ public class DefaultCategoryServiceImpl implements CategoryService{
 	public CategoryModel createCategory(String code, String tittle, String superCategoryCode) throws RestBusinessRunTimeException{
 		validateArgs(code, tittle);
 		
-		CategoryModel newCategory = categoryDao.createCategory(code, tittle, superCategoryCode);
-		
-		return newCategory;
+		return categoryDao.createCategory(code, tittle, superCategoryCode);
 	}
 	
 	@Override
-	public List<CategoryModel> getCategoriesByCodesForNewBook(List<String> categoriesCodes) throws RestBusinessRunTimeException{
+	public List<CategoryModel> getCategoriesByCodes(Set<String> categoriesCodes){
+		return getCategoriesByCode(categoriesCodes, false);
+	}
+	
+	/* (non-Javadoc)
+	 * @see br.com.rest.services.CategoryService#getCategoriesByCodesForNewBook(java.util.List)
+	 */
+	@Override
+	public List<CategoryModel> getCategoriesByCodesForNewBook(Set<String> categoriesCodes) throws RestBusinessRunTimeException{
+		return getCategoriesByCode(categoriesCodes, true);
+	}
+
+	/**
+	 * @param categoriesCodes
+	 * @param validateDuplicateParents
+	 * @return
+	 */
+	private List<CategoryModel> getCategoriesByCode(Set<String> categoriesCodes, boolean validateDuplicateParents) {
 		if(categoriesCodes == null || categoriesCodes.isEmpty()){
 			return new ArrayList<CategoryModel>();
 		}
@@ -39,14 +55,25 @@ public class DefaultCategoryServiceImpl implements CategoryService{
 		List<CategoryModel> categoriesToReturn = new ArrayList<CategoryModel>();
 		
 		for(String code: categoriesCodes){
-			CategoryModel category = categoryDao.getCategoryByCode(code);
-			
-			if(category != null){
-				validateDuplicateParentsCategory(categoriesToReturn, category.getCode());
-				categoriesToReturn.add(category);
-			}
+			addTolistCategoryByCode(categoriesToReturn, code, validateDuplicateParents);
 		}
 		return categoriesToReturn;
+	}
+
+	/**
+	 * @param categoriesToReturn
+	 * @param code
+	 * @param validateDuplicateParents
+	 */
+	private void addTolistCategoryByCode(List<CategoryModel> categoriesToReturn, String code, boolean validateDuplicateParents) {
+		CategoryModel category = categoryDao.getCategoryByCode(code);
+		
+		if(category != null){
+			if(validateDuplicateParents){
+				validateDuplicateParentsCategory(categoriesToReturn, category.getCode());
+			}
+			categoriesToReturn.add(category);
+		}
 	}
 	
 	/**

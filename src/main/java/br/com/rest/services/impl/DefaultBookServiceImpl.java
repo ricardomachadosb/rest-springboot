@@ -1,6 +1,6 @@
 package br.com.rest.services.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,10 @@ public class DefaultBookServiceImpl implements BookService{
 	private BookDao bookDao;
 	
 	@Override
-	public BookModel createBook(String tittle, List<String> categoriesCodes) {
+	public BookModel createBook(String tittle, Set<String> categoriesCodes) {
 		validateArgs(tittle, categoriesCodes);
 		
-		BookModel bookModel = bookDao.createBook(tittle, categoriesCodes);
-		
-		return bookModel;
+		return bookDao.createBook(tittle, categoriesCodes);
 	}
 	
 	/**
@@ -30,7 +28,7 @@ public class DefaultBookServiceImpl implements BookService{
 	 * @param tittle
 	 * @throws RestBusinessRunTimeException
 	 */
-	private void validateArgs(String tittle, List<String> categoriesCodes) throws RestBusinessRunTimeException{
+	private void validateArgs(String tittle, Set<String> categoriesCodes) throws RestBusinessRunTimeException{
 		boolean hasErrors = false;
 		StringBuilder errorsMessages = new StringBuilder();
 		

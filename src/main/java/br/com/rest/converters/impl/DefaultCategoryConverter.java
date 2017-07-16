@@ -1,5 +1,8 @@
 package br.com.rest.converters.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import br.com.rest.converters.CategoryConverter;
@@ -22,6 +25,19 @@ public class DefaultCategoryConverter implements CategoryConverter{
 		}
 		
 		return categoryDTO;
+	}
+
+	@Override
+	public List<CategoryDTO> convertAll(List<CategoryModel> categories) {
+		List<CategoryDTO> categoriesDto = new ArrayList<CategoryDTO>();
+		
+		if(categories != null && !categories.isEmpty()){
+			for(CategoryModel cm: categories){
+				categoriesDto.add(this.convert(cm));
+			}
+		}
+		
+		return categoriesDto;
 	}
 
 }
