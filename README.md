@@ -16,7 +16,7 @@ How to RUN
 * [Clone this project](https://help.github.com/articles/cloning-a-repository/)
 * Go to project root folder and execute the command: ```$gradle build```
 * Still on root project folder run ```$gradle bootRun ```
-* Open your web browser and access [localhost:8082](http://localhost:8082/)
+* This Web Project will run on port 8082 [localhost:8082](http://localhost:8082/)
 
 If you want to import the project in eclipse run ```$gradle eclipse ``` at project root folder.
 
