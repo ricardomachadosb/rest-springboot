@@ -1,7 +1,7 @@
 Rest Spring Boot 
 ========
 
- This rest full application built with Spring Boot 
+ This is a rest full application built with Spring Boot 
 
 Technologies 
 ----
